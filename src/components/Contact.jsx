@@ -26,7 +26,7 @@ function Contact() {
   }
 
   return (
-    <motion.section style={{ willChange: 'transform, opacity' }} className="relative px-6 pb-20 pt-20 md:px-10 lg:px-16">
+    <section className="relative px-6 pb-20 pt-20 md:px-10 lg:px-16">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_15%,rgba(0,245,255,0.18),transparent_38%),radial-gradient(circle_at_80%_88%,rgba(255,107,53,0.2),transparent_34%)]" />
 
       <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-[#101622b8] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.55)] sm:p-8 md:p-10">
@@ -168,7 +168,7 @@ function Contact() {
           </motion.aside>
         </div>
       </div>
-    </motion.section>
+    </section>
   )
 }
 

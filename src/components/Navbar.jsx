@@ -91,12 +91,12 @@ function Navbar() {
   }, [])
 
   return (
-    <header data-site-navbar className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${isScrolled ? 'py-3' : 'py-5'}`}>
+    <header data-site-navbar className={`fixed inset-x-0 top-0 z-50 transform-gpu transition-[padding] duration-500 ${isScrolled ? 'py-3' : 'py-5'}`}>
       <nav
         className={`mx-auto flex w-[min(1140px,94vw)] items-center justify-between rounded-2xl border px-4 py-3 md:px-6 ${
           isScrolled
-            ? 'border-cyan/20 bg-[#0d111bcc] shadow-[0_18px_45px_rgba(0,0,0,0.45)] backdrop-blur-xl'
-            : 'border-white/10 bg-[#0d111b85] backdrop-blur-md'
+            ? 'border-cyan/20 bg-[#0d111bf5] shadow-[0_18px_45px_rgba(0,0,0,0.45)]'
+            : 'border-white/10 bg-[#0d111be8]'
         }`}
       >
         <button
@@ -148,7 +148,7 @@ function Navbar() {
       </nav>
 
       <div
-        className={`mx-auto mt-2 w-[min(1140px,94vw)] overflow-hidden rounded-2xl border border-white/10 bg-[#0d111be0] backdrop-blur-xl transition-all duration-300 md:hidden ${
+        className={`mx-auto mt-2 w-[min(1140px,94vw)] overflow-hidden rounded-2xl border border-white/10 bg-[#0d111bf8] transition-[max-height,opacity] duration-300 md:hidden ${
           menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 border-transparent opacity-0'
         }`}
       >

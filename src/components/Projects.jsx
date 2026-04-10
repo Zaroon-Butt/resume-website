@@ -50,7 +50,7 @@ const cardVariants = {
 
 function Projects() {
   return (
-    <motion.section style={{ willChange: 'transform, opacity' }} className="mid-gradient-section relative px-6 py-20 md:px-10 lg:px-16">
+    <section className="mid-gradient-section relative px-6 py-20 md:px-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
@@ -100,7 +100,7 @@ function Projects() {
           ))}
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   )
 }
 

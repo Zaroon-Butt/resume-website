@@ -1,5 +1,5 @@
 import { Suspense, lazy, memo, useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { scrollToSection } from '../utils/scrollToSection'
 
 const ThreeBackground = lazy(() => import('./ThreeBackground'))
@@ -17,14 +17,6 @@ function Hero() {
   const [isHeroVisible, setIsHeroVisible] = useState(true)
 
   const sectionRef = useRef(null)
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
-
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 24])
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.92])
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -88,9 +80,8 @@ function Hero() {
   }, [displayText, isDeleting, roleIndex])
 
   return (
-    <motion.section
+    <section
       ref={sectionRef}
-      style={{ y: heroY, opacity: heroOpacity, willChange: 'transform, opacity' }}
       className="relative flex min-h-screen items-center overflow-x-hidden px-6 pb-24 pt-28 md:px-10 lg:px-16"
     >
       <div className="hero-grid absolute inset-0" />
@@ -146,7 +137,7 @@ function Hero() {
           </div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   )
 }
 
