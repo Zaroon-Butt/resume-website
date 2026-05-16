@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
 
+const formspreeEndpoint = 'https://formspree.io/f/xeedjqyz'
+
 const initialForm = {
   name: '',
   email: '',
@@ -12,17 +14,57 @@ const initialForm = {
 
 function Contact() {
   const [formData, setFormData] = useState(initialForm)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState({ state: 'idle', message: '' })
 
   const handleChange = (event) => {
     const { name, value } = event.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    setIsSubmitted(true)
-    setFormData(initialForm)
+
+    if (isSubmitting) {
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus({ state: 'idle', message: '' })
+
+    try {
+      const payload = new FormData(event.currentTarget)
+      payload.append('_subject', 'New project inquiry from portfolio')
+
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        body: payload,
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        const errorPayload = await response.json().catch(() => null)
+        const errorMessage =
+          errorPayload?.errors?.[0]?.message || 'Something went wrong. Please try again or email me directly.'
+        setSubmitStatus({ state: 'error', message: errorMessage })
+        return
+      }
+
+      setSubmitStatus({
+        state: 'success',
+        message: "Thanks for reaching out. I'll get back to you shortly with next steps.",
+      })
+      setFormData(initialForm)
+    } catch (error) {
+      setSubmitStatus({
+        state: 'error',
+        message: 'Unable to send right now. Please try again or email me directly.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -51,6 +93,8 @@ function Contact() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
             onSubmit={handleSubmit}
             className="space-y-4"
+            action={formspreeEndpoint}
+            method="POST"
           >
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="space-y-2 text-sm text-white/70">
@@ -106,15 +150,16 @@ function Contact() {
               />
             </label>
 
-            <button type="submit" className="neon-btn w-full py-3 text-sm uppercase tracking-[0.2em] sm:w-auto sm:px-7">
-              Send Inquiry
+            <button
+              type="submit"
+              className="neon-btn w-full py-3 text-sm uppercase tracking-[0.2em] sm:w-auto sm:px-7"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Sending...' : 'Send Inquiry'}
             </button>
 
-            {isSubmitted && (
-              <p className="text-sm text-emerald-300">
-                Thanks for reaching out. I&apos;ll get back to you shortly with next steps.
-              </p>
-            )}
+            {submitStatus.state === 'success' && <p className="text-sm text-emerald-300">{submitStatus.message}</p>}
+            {submitStatus.state === 'error' && <p className="text-sm text-rose-300">{submitStatus.message}</p>}
           </motion.form>
 
           <motion.aside
