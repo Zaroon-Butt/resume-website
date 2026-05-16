@@ -4,28 +4,28 @@ import { scrollToSection } from '../utils/scrollToSection'
 
 const projectData = [
   {
-    name: 'Inter Departmental Communication App (FYP)',
+    name: 'Willunite',
     description:
-      'Built a cross-platform platform where students showcase skills, teach online, and connect through personalized recommendations.',
-    tags: ['React Native', 'Vite', 'TypeScript', 'NLP Ranking'],
+      'Developed a Shariah-compliant Islamic will and inheritance planning app with guided will creation, asset entry, family mapping, and secure REST API synchronization.',
+    tags: ['React Native', 'TypeScript', 'REST APIs', 'iOS & Android'],
+  },
+  {
+    name: 'EasyStream',
+    description:
+      'Built a broadcast-grade live streaming app featuring multi-platform simulcasting, 1080p at 60 FPS performance, advanced camera controls, and real-time monitoring with recovery logic.',
+    tags: ['React Native', 'Live Streaming', 'Performance', 'iOS & Android'],
+  },
+  {
+    name: 'GHE Connect',
+    description:
+      'Delivered the MVP foundation of a mobile labor marketplace with role-based authentication, Supabase backend integration, and scalable navigation architecture for iOS and Android.',
+    tags: ['React Native', 'Supabase', 'Architecture'],
   },
   {
     name: 'Fitness Freak - Mobile Fitness App',
     description:
       'Developed responsive workout and profile modules with tailored plans, smooth navigation, and engaging UI for Android/iOS users.',
     tags: ['React Native', 'State Management', 'Mobile UX'],
-  },
-  {
-    name: 'E-Commerce Fabric Store Platform',
-    description:
-      'Delivered a dynamic online fabric store experience with intuitive category browsing, product display, and optimized purchase flow.',
-    tags: ['MERN Stack', 'JavaScript', 'Responsive Design'],
-  },
-  {
-    name: '2D Space Buster Android Game',
-    description:
-      'Created an arcade-style Android game with smooth animations, gameplay feedback loops, and lightweight performance tuning.',
-    tags: ['Android', 'Game UI', 'Performance'],
   },
 ]
 
